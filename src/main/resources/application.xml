@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/util
+        https://www.springframework.org/schema/util/spring-util.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:util="http://www.springframework.org/schema/util">
+
+    <!-- 通过bean标签完成对象的创建 -->
+    <!-- id：Spring容器中对象的唯一标识，不能重复（一般是类名首字母小写） -->
+    <!-- class：类的全路径（包名.类名） -->
+    <!-- scope：singleton单例（默认） prototype多例 -->
+    <!-- lazy-init：懒加载，默认default==false 只对单例对象有效，多例对象prototype都是懒加载 -->
+    <!-- init-method：初始化方法 -->
+    <!-- destroy-method：销毁方法 -->
+    <!-- <bean class="cn.jt.pojo.User" id="user" scope="prototype" lazy-init="true"/> -->
+    <bean class="cn.jt.pojo.User" id="user" init-method="init" destroy-method="destroy"/>
+
+    <!-- 通过静态工厂实例化对象，适用于那些无法被new的抽象类或接口 -->
+    <!-- factory-method：确定要调用的静态方法，通过该方法创建对象，存储在Spring容器中 -->
+    <bean id="calendar" class="factory.StaticFactory" factory-method="getCalendar"/>
+
+    <!-- 通过实例化工厂实例化对象，适用于那些即无法被new的抽象类或接口，并且也没有静态方法 -->
+    <bean id="instanceFactory" class="factory.InstanceFactory"/>
+    <!-- factory-bean：将instanceFactory工厂交给是Spring容器管理 -->
+    <!-- factory-method：确定要调用的普通方法，通过该方法创建对象，存储在Spring容器中 -->
+    <bean id="factory" factory-bean="instanceFactory" factory-method="getCalendar"/>
+
+    <!-- Spring的工厂模式 -->
+    <bean id="calendar2" class="factory.SpringFactory"/>
+
+    <!-- 为userDI依赖注入属性值 -->
+    <bean id="userDI" class="cn.di.UserDI">
+        <!-- 构造方法注入参数 -->
+        <!--        <constructor-arg name="id" value="1"/>-->
+        <!--        <constructor-arg name="name" value="郑超"/>-->
+        <!-- type：为参数指定类型，用于区别参数个数相同但参数类型不同的构造方法 -->
+        <!--        <constructor-arg value="1" type="java.lang.Integer"/>-->
+        <!--        <constructor-arg value="郑超" type="java.lang.String"/>-->
+        <!-- index：多个参数时，指定顺序 -->
+        <!--        <constructor-arg value="1" type="java.lang.Integer" index="0"/>-->
+        <!--        <constructor-arg value="郑超" type="java.lang.String" index="1"/>-->
+        <!-- set方法注入参数 -->
+        <property name="id" value="1"/>
+        <property name="name" value="郑超"/>
+        <property name="list">
+            <list>
+                <value>郑超</value>
+                <value>哈哈</value>
+                <value>老人</value>
+            </list>
+        </property>
+        <property name="set">
+            <set>
+                <value>23</value>
+                <value>2</value>
+                <value>3</value>
+            </set>
+        </property>
+        <!-- 引用公共的map标签 -->
+        <property name="map" ref="map"/>
+        <property name="properties">
+            <props>
+                <prop key="key">我的</prop>
+                <prop key="name">益达</prop>
+            </props>
+        </property>
+        <!--        <property name="array">-->
+        <!--            <array>-->
+        <!--                <value>23</value>-->
+        <!--            </array>-->
+        <!--        </property>-->
+        <!-- null值 -->
+        <!--        <property name="properties">-->
+        <!--            <null/>-->
+        <!--        </property>-->
+    </bean>
+
+    <!-- 定义公共的map标签 -->
+    <util:map id="map">
+        <entry key="name" value="电风扇"/>
+        <entry key="age" value="3"/>
+    </util:map>
+
+</beans>
