@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/aop
+        https://www.springframework.org/schema/aop/spring-aop.xsd"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns="http://www.springframework.org/schema/beans"
+       xmlns:aop="http://www.springframework.org/schema/aop">
+
+    <bean id="userService" class="cn.service.impl.UserServiceImpl"/>
+    <bean id="logBefore" class="cn.log.LogBefore"/>
+    <bean id="logAfter" class="cn.log.LogAfter"/>
+
+    <!--1、execution(): 表达式主体。
+        2、第一个*号：表示返回类型，*号表示所有的类型。
+        3、包名：表示需要拦截的包名，后面的两个句点表示当前包和当前包的所有子包，com.sample.service.impl包、子孙包下所有类的方法。
+        4、第二个*号：表示类名，*号表示所有的类。
+        5、*(..):最后这个星号表示方法名，*号表示所有的方法，后面括弧里面表示方法的参数，两个句点表示任何参数。-->
+
+    <!-- 方式一：使用原生Spring API接口 -->
+    <!--    <aop:config>-->
+    <!-- 切入点 expression：表达式，要执行的位置 -->
+    <!--        <aop:pointcut id="userServiceImpl" expression="execution(* cn.service.impl.UserServiceImpl.*(..))"/>-->
+    <!-- <aop:pointcut id="userServiceImpl" expression="execution(* cn.service.impl.UserServiceImpl.add(..))"/> -->
+    <!-- 执行环绕增加，即将logBefore类切入到userServiceImpl中 -->
+    <!--        <aop:advisor advice-ref="logBefore" pointcut-ref="userServiceImpl"/>-->
+    <!--        <aop:advisor advice-ref="logAfter" pointcut-ref="userServiceImpl"/>-->
+    <!--    </aop:config>-->
+
+    <!-- 方式二：自定义类实现 -->
+    <!--    <bean id="diyPointCut" class="cn.diy.DiyPointCut"/>-->
+    <!--    <aop:config>-->
+    <!-- 自定义切面 -->
+    <!--        <aop:aspect ref="diyPointCut">-->
+    <!-- 切入点 expression：表达式，要执行的位置 -->
+    <!--            <aop:pointcut id="userServiceImpl" expression="execution(* cn.service.impl.UserServiceImpl.*(..))"/>-->
+    <!-- 通知 -->
+    <!--            <aop:before method="before" pointcut-ref="userServiceImpl"/>-->
+    <!--            <aop:after method="after" pointcut-ref="userServiceImpl"/>-->
+    <!--        </aop:aspect>-->
+    <!--    </aop:config>-->
+
+    <!-- 方式三：注解 -->
+    <bean id="pointCut" class="cn.diy.AnnotationPointCut"/>
+    <!-- 开启注解支持 动态代理：JDK（proxy-target-class="false"） cglib（proxy-target-class="true"） -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+</beans>

@@ -10,8 +10,10 @@
     <version>1.0-SNAPSHOT</version>
     <modules>
         <module>spring_mvc_demo</module>
-        <module>spring_mvc_annotation</module>
         <module>spring_beans_demo</module>
+        <module>spring_proxy_demo</module>
+        <module>spring_aop_demo</module>
+        <module>spring_transaction1_demo</module>
     </modules>
 
     <properties>
