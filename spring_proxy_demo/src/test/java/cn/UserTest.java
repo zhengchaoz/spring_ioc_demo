@@ -4,6 +4,7 @@ import cn.config.SpringConfig;
 import cn.pojo.User;
 import cn.service.UserService;
 import cn.service.impl.UserServiceImpl;
+import cn.utils.CGLibFactory;
 import cn.utils.JDKProxyFactory;
 import cn.utils.ProxyInvocationHandler;
 import org.junit.Test;
@@ -39,6 +40,12 @@ public class UserTest {
         handler.setTarget(userService);
         UserService proxy = (UserService) handler.getProxy();
         proxy.addUser(null);
+    }
+
+    @Test
+    public void testCGLibProxy(){
+        User proxy = new CGLibFactory().createProxy(User.class);
+        System.out.println(proxy.getClass());
     }
 
 }

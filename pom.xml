@@ -14,6 +14,8 @@
         <module>spring_proxy_demo</module>
         <module>spring_aop_demo</module>
         <module>spring_transaction1_demo</module>
+        <module>spring_aop1_demo</module>
+        <module>spring_cache_demo</module>
     </modules>
 
     <properties>
