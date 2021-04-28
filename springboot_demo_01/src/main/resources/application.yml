@@ -1,0 +1,11 @@
+#k: v ==> name: tom
+#相同缩进项(空格)的元素为同一级
+
+server:
+  port: 8090        # 修改Springboot启动端口号
+  servlet:          # web项目发布路径
+    context-path: / # /代表根目录
+
+dept:
+  id: 128
+  name: 财务部
