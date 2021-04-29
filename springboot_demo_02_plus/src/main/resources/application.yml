@@ -1,0 +1,26 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+  # serverTimezone=Asia/Shanghai  时区
+  # useUnicode=true               使用Unicode编码
+  # characterEncoding=utf8        使用utf-8字符集
+  # autoReconnect=true            是否重新连接
+  # allowMultiQueries=true        是否批量操作，即可以执行多个SQL
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3309/jt?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=utf8&autoReconnect=true&allowMultiQueries=true
+    username: root
+    password: root
+
+# mybatis-plush\u914D\u7F6E
+mybatis-plus:
+  type-aliases-package: cn.jt.pojo     # 别名，省去写全类名
+  mapper-locations: classpath:/mappers/*.xml
+  configuration:
+    map-underscore-to-camel-case: true # 开启驼峰映射
+
+logging:
+  level:
+    cn.jt.mapper: debug      # 开启sql日志输出，cn.jt.mapper是存放mapper接口文件的目录

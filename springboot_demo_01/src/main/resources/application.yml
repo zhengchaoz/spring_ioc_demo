@@ -1,11 +1,38 @@
 #k: v ==> name: tom
 #相同缩进项(空格)的元素为同一级
 
+spring:
+  profiles:
+    active: test      # 当前运行的环境名称
+
+---
+
 server:
-  port: 8090        # 修改Springboot启动端口号
-  servlet:          # web项目发布路径
-    context-path: / # /代表根目录
+  port: 8090          # 修改Springboot启动端口号
+  servlet:            # web项目发布路径
+    context-path: /   # /代表根目录
 
 dept:
   id: 128
   name: 财务部
+
+spring:
+  config:
+    activate:
+      on-profile: prod # 环境名称
+
+---
+
+server:
+  port: 8088
+  servlet:
+    context-path: /
+
+dept:
+  id: 852
+  name: 总监部
+
+spring:
+  config:
+    activate:
+      on-profile: test

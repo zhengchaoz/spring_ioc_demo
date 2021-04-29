@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 对应唯一一个mapper.java接口文件 -->
+<mapper namespace="cn.jt.mapper.DemoUserMapper">
+    <select id="findAll" resultType="DemoUser">
+        select *
+        from demo_user;
+    </select>
+</mapper>
