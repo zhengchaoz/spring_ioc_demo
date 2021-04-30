@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- 导入模板标签 -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>user</title>
+        <style>
+            tr {
+                text-align: center;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>用户测试案例</h1>
+        <h2 th:text="${id}"></h2>
+        <h2 th:text="${name}"></h2>
+
+        <hr/>
+
+        <form action="/user/addUser" method="POST">
+            <table style="margin-top: 50px;border: 1px solid black;border-collapse: collapse;
+                   margin-right: auto;margin-left: auto;width: 350px;">
+                <tr>
+                    <td colspan="2"><h1>表格数据提交</h1></td>
+                </tr>
+                <tr>
+                    <td>ID:</td>
+                    <td><label for="id"></label><input id="id" name="id" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>姓名:</td>
+                    <td><label for="name"></label><input id="name" name="name" type="text"/></td>
+                </tr>
+                <tr>
+                    <td>爱好:</td>
+                    <td>
+                        <label>
+                            <input type="checkbox" name="hobby" value="1"/>
+                        </label>打篮球
+                        <label>
+                            <input type="checkbox" name="hobby" value="2"/>
+                        </label>打排球
+                        <label>
+                            <input type="checkbox" name="hobby" value="3"/>
+                        </label>踢足球
+                    </td>
+                </tr>
+                <tr>
+                    <td>宠物名称:</td>
+                    <td>
+                        <label>
+                            <input type="text" name="dog.dogName"/>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>宠物年龄:</td>
+                    <td>
+                        <label>
+                            <input type="text" name="dog.dogAge"/>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">提交</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+</html>
