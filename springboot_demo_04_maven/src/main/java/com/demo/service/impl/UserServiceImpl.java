@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public void addUser(Integer age, String name, String sex) {
         userMapper.insert(new User(name, sex, age));
     }
+
+    @Override
+    public User findUserByAjax(Integer id) {
+        return userMapper.selectById(id);
+    }
 }

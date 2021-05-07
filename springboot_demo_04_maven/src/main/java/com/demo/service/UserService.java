@@ -14,4 +14,6 @@ public interface UserService /*extends IService<User>*/ {
     List<User> findAll();
 
     void addUser(Integer age, String name, String sex);
+
+    User findUserByAjax(Integer id);
 }

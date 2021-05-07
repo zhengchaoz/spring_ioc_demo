@@ -40,4 +40,15 @@ public class UserController {
         userService.addUser(age, name, sex);
         return "forward:/userList";
     }
+
+    @RequestMapping("/userAjax")
+    public String userAjax() {
+        return "userAjax";
+    }
+
+    @ResponseBody
+    @GetMapping("/findUserByAjax/{id}")
+    public User findUserByAjax(@PathVariable Integer id) {
+        return userService.findUserByAjax(id);
+    }
 }

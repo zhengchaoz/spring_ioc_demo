@@ -16,7 +16,6 @@
         <module>spring_transaction1_demo</module>
         <module>spring_aop1_demo</module>
         <module>spring_cache_demo</module>
-        <module>springboot_04_maven</module>
         <module>springboot_demo_04_maven</module>
     </modules>
 

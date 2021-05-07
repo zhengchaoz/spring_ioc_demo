@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>userAjax</title>
+        <script src="/jquery-3.6.0.js"></script>
+        <script type="text/javascript">
+            console.log($);
+            $(function () {
+                // alert("你好！");
+                // url地址， 提交数据， 回到函数， 返回值类型
+                // $.get(url, data, function, dataType);
+                $.get("/findUserByAjax/1", function (result) {
+                    console.log(result);
+                    $.each(result, function (i, obj) {
+                        console.log(obj);
+                    });
+                });
+                // $.getJSON(url, data, function);
+                // $.post();
+
+                // $.put();
+                // $.delete();
+
+                // $.ajax({
+                //     type: "",
+                //     url: "",
+                //     async: true,// 默认设置，异步请求
+                //     data: {},
+                //     dataType: "",
+                //     beforeSend: function (xhr) {},
+                //     dataFilter: function (data, type) {},
+                //     success: function (result) {},
+                //     error: function(result) {}
+                // });
+            });
+        </script>
+    </head>
+    <body>
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>姓名</th>
+                <th>年龄</th>
+            </tr>
+        </table>
+    </body>
+</html>
