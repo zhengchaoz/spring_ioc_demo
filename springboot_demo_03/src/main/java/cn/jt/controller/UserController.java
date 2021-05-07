@@ -4,10 +4,7 @@ import cn.jt.pojo.Dog;
 import cn.jt.pojo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -76,6 +73,28 @@ public class UserController {
     public String addUser(User user) {
         System.out.println(user);
         return "success";
+    }
+
+    @GetMapping("/findUser")
+    public String findUser() {
+        // 重定向是多个请求
+        return "redirect:/redirectUser";
+    }
+
+    @GetMapping("/redirectUser")
+    public String redirectUser() {
+        return "redirectUser";
+    }
+
+    @GetMapping("/findUser1")
+    public String findUser1() {
+        // 转发的是一个请求
+        return "forward:/forwardUser";
+    }
+
+    @GetMapping("/forwardUser")
+    public String forwardUser() {
+        return "forwardUser";
     }
 
 }

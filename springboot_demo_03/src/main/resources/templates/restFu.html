@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title>restFu</title>
+    </head>
+    <body>
+        <form th:action="@{/restFuTo/get}" method="get">
+            <button type="submit">发送GET请求</button>
+        </form>
+        <form th:action="@{/restFuTo/post}" method="post">
+            <button type="submit">发送POST请求</button>
+        </form>
+        <form th:action="@{/restFuTo/put}" method="post">
+            <input type="hidden" name="_method" value="put"/>
+            <button type="submit">发送PUT请求</button>
+        </form>
+        <form th:action="@{/restFuTo/delete}" method="post">
+            <input type="hidden" name="_method" value="delete"/>
+            <button type="submit">发送DELETE请求</button>
+        </form>
+    </body>
+</html>
