@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+    </head>
+    <body>
+        <div id="app">
+            <label>
+                <span v-for="item in array" v-text="item"></span>
+                <input type="text" v-model="d"/>
+                <button @click="push">追加</button>
+                <button @click="pop">删除</button>
+                <button @click="shift">开头删除</button>
+                <button @click="unshift">开头追加</button>
+                <button @click="splice">从指定位置开始替换制定个数的元素</button>
+                <button @click="reverse">翻转</button>
+            </label>
+        </div>
+        <script src="../js/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    d: '',
+                    array: [
+                        '主动',
+                        '二维',
+                        '记录'
+                    ]
+                },
+                methods: {
+                    push() {
+                        this.array.push(this.d);
+                    },
+                    pop() {
+                        this.array.pop();
+                    },
+                    shift() {
+                        this.array.shift();
+                    },
+                    unshift() {
+                        this.array.unshift(this.d);
+                    },
+                    splice() {
+                        this.array.splice(1, 1, this.d);
+                    },
+                    reverse() {
+                        this.array.reverse();
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

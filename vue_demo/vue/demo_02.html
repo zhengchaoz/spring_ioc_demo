@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>vue案例02--数据显示</title>
+        <style>
+            [v-cloak] {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app02">
+            <!-- v-cloak：渲染未完成时不展示，需要配合样式使用 -->
+            <h1 v-cloak>{{hello}}</h1>
+            <h1 v-text="msg"></h1>
+            <!-- 转义 -->
+            <span v-html="html"></span>
+            <!-- 跳过 -->
+            <h3 v-pre>{{name}}</h3>
+            <!-- 只展现一次，不会被修改 -->
+            <h3 v-once>{{once}}</h3>
+            <label>
+                <input type="text" v-model="model"/>
+            </label>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: "#app02",
+                data: {
+                    hello: '你好！',
+                    msg: '测试v-text',
+                    html: '<h1>html效果展现</h1>',
+                    once: '测试解析次数',
+                    model: '双向绑定'
+                }
+            });
+        </script>
+    </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>表单修饰符</title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!-- 通过number属性 强制转化为数值类型 -->
+			年龄: <input name="age" v-model.number="age" /> 
+			用户名: <input name="username" v-model.trim="username" />
+			<button @click="handler">计算</button>
+			<br />
+			
+			<!-- 默认条件下 当用户input时,触发事件, 如果需要失去焦点时触发事件则添加lazy -->
+			用户信息: <input name="msg" v-model.lazy="msg"/>{{msg}}
+			
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					age: '',
+					username: '',
+					msg: ''
+				},
+				methods:{
+					handler(){
+						//将年龄扩大10岁
+						//console.log(this.age + 10)
+						console.log(this.username.length)
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

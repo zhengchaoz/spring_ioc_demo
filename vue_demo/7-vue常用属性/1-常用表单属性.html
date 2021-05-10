@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>常用表单属性</title>
+	</head>
+	<body>
+		<h1>本案例练习 表单提交数据时  数据如何与vue进行数据绑定</h1>
+		<div id="app">
+			<form id="userForm" action="http://www.baidu.com">
+				<div>
+					<span>
+						姓名:
+					</span>
+					<span>
+						<input type="text" name="name" v-model="name"/>
+					</span>
+				</div>
+				<div>
+					<span>性别:</span>
+					<span>
+						<!-- id-for进行关联，可以相当于合成一个div -->
+						<input type="radio" name="gender" value="男" id="man" v-model="gender"/>
+						<label for="man">男</label>
+						<input type="radio" name="gender" value="女" id="women" v-model="gender"/>
+						<label for="women">女</label>
+					</span>
+				</div>
+				<div>
+					<span>爱好:</span>
+					<input type="checkbox" name="hobbies" value="吃" v-model="hobbies"/>吃
+					<input type="checkbox" name="hobbies" value="喝" v-model="hobbies"/>喝
+					<label>
+						<input type="checkbox" name="hobbies" value="玩" v-model="hobbies"/>玩
+					</label>
+				</div>
+				<div>
+					<span>职业</span>
+					<!-- 如果需要设置为多选 则添加属性 -->
+					<select name="occupation" v-model="occupation" multiple="true">
+						<option value="工人">工人</option>
+						<option value="教师">教师</option>
+						<option value="工程师">工程师</option>
+					</select>
+				</div>
+				<div>
+					<span>个人简介</span>
+					<textarea name="userInfo" style="width: 200px;height: 50px;" v-model="userInfo"></textarea>
+				</div>
+				<div>
+					<!-- 阻止默认提交事件 -->
+					<input type="submit"  value="提交" v-on:click.prevent="submitForm"/>
+				</div>
+			</form>
+		</div>
+		
+		
+		<!-- 引入JS文件 -->
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:	"#app",
+				data: {
+					name: '',
+					gender: '男',
+					//多个数据定义时 应该使用数组
+					hobbies:	['吃','喝'],
+					occupation: ['工人'],
+					userInfo: ''
+				},
+				methods: {
+					submitForm(){
+						//数据提交
+						console.log("姓名:"+this.name)
+						console.log("性别:"+this.gender)
+						console.log('爱好:'+this.hobbies)
+						console.log('职业:'+this.occupation)
+						console.log('用户详情:'+this.userInfo)
+						console.log('封装好数据之后,可以使用ajax方式实现数据提交')
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

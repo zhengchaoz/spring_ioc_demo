@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>监听器</title>
+    </head>
+    <body>
+        <div id="app">
+            <label>
+                姓：<input type="text" name="firstName" v-model="firstName"/>
+            </label>
+            <label>
+                名：<input type="text" name="lastName" v-model="lastName"/>
+            </label>
+            全名：{{fullName}}
+        </div>
+        <script src="../js/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    firstName: '',
+                    lastName: '',
+                    fullName: ''
+                },
+                watch: {
+                    firstName(value) {
+                        this.fullName = value + this.lastName
+                    },
+                    lastName(value) {
+                        this.fullName = this.firstName + value
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

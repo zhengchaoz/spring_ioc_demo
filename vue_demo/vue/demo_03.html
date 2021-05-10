@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>事件绑定</title>
+    </head>
+    <body>
+        <div id="app">
+            {{num}}
+            <button v-on:click="num++">增加1</button>
+            <button @click="num++">增加1</button>
+            <br>
+            <button @click="addNum">增加1</button>
+            <button @click="addNum2(10000)">增加1</button>
+            <!-- 如果没有参数,则默认传递event对象
+						 如果有参数,则使用$event 传递event对象
+				 -->
+            <button @click="addNum2($event)">传递event对象</button>
+            <br>
+            <div @click="addNum4">
+                {{num}}
+                <!-- 阻止该冒泡事件addNum3 -->
+                <button @click.stop="addNum3">增加</button>
+            </div>
+            <br>
+            <div>
+                阻止a标签跳转
+                <a href="http://www.baidu.com" @click.prevent="btnA">百度</a>
+            </div>
+            <br>
+            <div>
+                <input type="text" @keyup.enter="handler" value="回车触发"/>
+                <input type="text" @keyup.space="handler" value="空格触发"/>
+                <input type="text" @keyup.delete="handler" value="删除键触发"/>
+                <input type="text" @keyup.left="handler" value="<-触发"/>
+                <input type="text" @keyup.right="handler" value="->键触发"/>
+            </div>
+        </div>
+        <script src="../js/vue.js"></script>
+        <script>
+
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    num: 0
+                },
+                methods: {
+                    addNum() {
+                        this.num++;
+                    },
+                    //如果用户没有传递参数,则默认传递当前event对象
+                    addNum2(num) {
+                        // console.log(num.target.innerHTML)
+                        this.num = this.num + num;
+                    },
+                    addNum3() {
+                        this.num++;
+                    },
+                    addNum4() {
+                        this.num++;
+                    },
+                    btnA() {
+                        alert("跳转已被阻止！");
+                    },
+                    handler() {
+                        alert("触发效果！");
+                    }
+                }
+            });
+        </script>
+    </body>
+</html>

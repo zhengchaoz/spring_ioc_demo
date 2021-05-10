@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>过滤器用法</title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!-- 当失去焦点时触发 -->
+			用户名: <input name="username" type="username" v-model="username"/> 
+			{{username | upper}}
+			
+			<!-- 级联过滤器 -->
+			{{username | upper | add}}
+			
+			<input name="username" type="username" v-model="username" v-bind:msg="username | upper"/>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			//定义过滤器
+			Vue.filter('upper',(val) => {
+				//1.获取第一个字符						截取指定位置 之后的数据
+				return val.charAt(0).toUpperCase() + val.slice(1)
+			})
+			
+			//拼接123
+			Vue.filter('add',(val) => {
+				return val + '123'
+			})
+			const app = new Vue({
+				el: '#app',
+				data: {
+					username:'',
+				}
+			})
+		</script>
+	</body>
+</html>

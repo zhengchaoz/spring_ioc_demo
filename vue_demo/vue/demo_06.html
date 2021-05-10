@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>生命周期</title>
+	</head>
+	<body>
+		<div id="app">
+			<label>
+				<input type="text" v-model="name">
+			</label>
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					name: ''
+				},
+				methods: {
+					destroyed() {// 主动销毁vue对象
+						this.$destroy();
+					}
+				},
+				beforeCreate() {
+					console.log("beforeCreate...");
+				},
+				created() {//
+					console.log("created...");
+				},
+				beforeMount() {// 创建el元素是
+					console.log("beforeMount...");
+				},
+				mounted() {// el元素被vue条替代后
+					console.log("mounted...");
+				},
+				beforeUpdate() {
+					console.log("beforeUpdate...");
+				},
+				update() {// 数据修改之后调用
+					console.log("update...");
+				},
+				beforeDestroy() {
+					console.log("beforeDestroy...");
+				},
+				destroy() {
+					console.log("destroy...");
+				}
+			})
+		</script>
+	</body>
+</html>

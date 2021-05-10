@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>全局组件</title>
+    </head>
+    <body>
+        <div id="app">
+            <hello-component></hello-component>
+        </div>
+        <template id="helloTem">
+            <div>
+                <h1>{{msg}}</h1>
+            </div>
+        </template>
+        <script src="../js/vue.js"></script>
+        <script>
+            Vue.component('helloComponent', {
+                data: function () {
+                    return {
+                        msg: 'hello 组件'
+                    };
+                },
+                // template: '<h1>{{msg}}</h1>'
+                template: '#helloTem'
+            });
+
+            const app = new Vue({
+                el: '#app'
+            });
+        </script>
+    </body>
+</html>

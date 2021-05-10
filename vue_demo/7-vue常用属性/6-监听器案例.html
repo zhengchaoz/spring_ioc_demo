@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>用户数据校验</title>
+	</head>
+	<body>
+		
+		<div id="app">
+			<!-- 当失去焦点时触发 -->
+			用户名: <input name="username" type="username" v-model.lazy="username"/> {{msg}}
+		</div>
+		<script src="../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el: '#app',
+				data: {
+					username:'',
+					msg: ''
+				},
+				methods:{
+					checkName(username){
+						setTimeout(()=>{
+							if(username === 'admin'){
+								this.msg = '用户名已被使用'
+							}else{
+								this.msg = '用户名可以使用'
+							}
+						},2000)
+					}
+				},
+				//当数据发生变化时,就会触发监听器中的函数 必须传递数据
+				watch:{
+					username(val){
+						this.checkName(val)
+						this.msg = '数据正在校验'
+					}
+				}
+			})
+		</script>
+	</body>
+</html>

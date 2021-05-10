@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>监听器用法</title>
+    </head>
+    <body>
+
+        <div id="app">
+            姓式: <input type="text" name="firstName" v-model="firstName"/>
+            名称: <input type="text" name="lastName" v-model="lastName"/>
+            全名: {{fullName}}
+        </div>
+        <script src="../js/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: '#app',
+                data: {
+                    firstName: '',
+                    lastName: '',
+                    fullName: ''
+                },
+                //当数据发生变化时,就会触发监听器中的函数 必须传递数据
+                watch: {
+                    firstName(val) {
+                        this.fullName = val + this.lastName
+                    },
+                    lastName(val) {
+                        this.fullName = this.firstName + val
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

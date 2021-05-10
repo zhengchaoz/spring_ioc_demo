@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>v-for</title>
+    </head>
+    <body>
+        <div id="app">
+            <h3 v-for="item in hobby" v-text="item" :key="item"></h3>
+            <hr>
+            <div v-for="(u, i) in user">
+                <span v-text="u.id"></span>
+                <span v-text="u.name"></span>
+                <span v-text="i"></span>
+            </div>
+        </div>
+
+        <script src="../js/vue.js"></script>
+        <script>
+            const app = new Vue({
+                el: "#app",
+                data: {
+                    hobby: ['微软', '恐龙', '张三'],
+                    user: [{
+                        id: 1010,
+                        name: '海花'
+                    }, {
+                        id: 1202,
+                        name: '就业'
+                    }],
+                }
+            });
+        </script>
+    </body>
+</html>
