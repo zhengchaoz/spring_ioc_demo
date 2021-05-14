@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>路由</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- 路由连接：outer-link => a标签 // to => href属性 -->
+            <router-link to="/user">用户</router-link>
+            <router-link to="/dept">部门</router-link>
+            <!-- 路由占位符 -->
+            <router-view></router-view>
+        </div>
+        <script src="../js/vue.js"></script>
+        <script src="../js/vue-router.js"></script>
+        <script>
+            const user = {
+                template: '<h1>我是user组件</h1>',
+            }
+            const dept = {
+                template: '<h1>我是dept组件</h1>',
+            }
+            const router = new VueRouter({
+                routes: [{
+                    path: '/',
+                    redirect: '/user' // 重定向
+                }, {
+                    path: '/user',
+                    component: user
+                }, {
+                    path: '/dept',
+                    component: dept
+                }]
+            });
+
+            const app = new Vue({
+                el: '#app',
+                router
+                // router: router
+            });
+        </script>
+    </body>
+</html>

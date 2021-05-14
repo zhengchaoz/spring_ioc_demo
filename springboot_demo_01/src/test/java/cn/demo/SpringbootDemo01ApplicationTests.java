@@ -1,6 +1,6 @@
 package cn.demo;
 
-import cn.demo.pojo.Dept;
+import com.demo.pojo.Dept;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

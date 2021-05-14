@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>用户列表数据</title>
+    </head>
+    <body>
+        <div id="app">
+            <!-- disabled 元素禁用 -->
+            用户编号: <input type="text" v-model="user.id" disabled/>
+            用户姓名: <input type="text" v-model="user.name"/><br>
+            用户年龄: <input type="text" v-model="user.age"/>
+            用户性别: <input type="text" v-model="user.sex"/>
+            <button @click="update">更新</button>
+            <hr/>
+            <!-- 用户展现的表格 -->
+            <table id="userTable" border="1px" align="center" width="800px">
+                <tr align="center">
+                    <td colspan="5"><h3>用户列表</h3></td>
+                </tr>
+                <tr align="center">
+                    <td>ID</td>
+                    <td>名称</td>
+                    <td>年龄</td>
+                    <td>性别</td>
+                    <td>操作</td>
+                </tr>
+                <tr v-for="user in users">
+                    <td v-text="user.id"></td>
+                    <td v-text="user.name"></td>
+                    <td v-text="user.age"></td>
+                    <td v-text="user.sex"></td>
+                    <td>
+                        <button @click="remove(user.id)">删除</button>
+                        |
+                        <button @click="edit(user)">编辑</button>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <script src="../js/vue.js"></script>
+        <script src="../js/axios.js"></script>
+        <script>
+            axios.defaults.baseURL = "http://localhost:8080/";
+            let app = new Vue({
+                    el: '#app',
+                    data: {
+                        users: [],
+                        user: {
+                            id: '',
+                            name: '',
+                            age: '',
+                            sex: ''
+                        }
+                    },
+                    methods: {
+                        getUsers() {
+                            axios.get("user").then(r => this.users = r.data);
+                        },
+                        edit(user) {
+                            this.user = user;
+                        },
+                        remove(id) {
+                            axios.delete("user", {
+                                params: {
+                                    // id: id
+                                    id
+                                }
+                            }).then(r => {
+                                alert(r.data);
+                                this.getUsers();
+                            });
+                        },
+                        async update() {
+                            // axios.put("user", this.user).then(r => {
+                            //     alert(r.data);
+                            //     this.getUsers();
+                            // });
+
+                            const {data: r} = await axios.put("user", this.user);
+                            alert(r);
+                        }
+                    },
+                    mounted() {
+                        this.getUsers();
+                    }
+                })
+            ;
+        </script>
+    </body>
+</html>

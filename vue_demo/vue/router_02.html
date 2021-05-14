@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>路由</title>
+    </head>
+    <body>
+        <div id="app">
+            <router-link to="/shopping">商场</router-link>
+            <router-link to="/zoo">动物园</router-link>
+            <router-view></router-view>
+        </div>
+        <template id="shop">
+            <div>
+                <h3>我是商场组件</h3>
+                <router-link to="/shopping/phone">手机</router-link>
+                <router-link to="/shopping/shoe">鞋垫</router-link>
+                <router-view></router-view>
+            </div>
+        </template>
+        <template id="zo">
+            <div>
+                <h3>我是动物园组件</h3>
+            </div>
+        </template>
+
+        <script src="../js/vue.js"></script>
+        <script src="../js/vue-router.js"></script>
+        <script>
+            const shopping = {
+                template: '#shop'
+            }
+            const shoe = {
+                template: '<h2>鞋垫</h2>'
+            }
+            const phone = {
+                template: '<h2>手机</h2>'
+            }
+
+            const zoo = {
+                template: '#zo'
+            }
+            const router = new VueRouter({
+                routes: [{
+                    path: '/shopping',
+                    component: shopping,
+                    children: [{
+                        path: '/shopping/shoe',
+                        component: shoe
+                    }, {
+                        path: '/shopping/phone',
+                        component: phone
+                    }]
+                }, {
+                    path: '/zoo',
+                    component: zoo
+                }]
+            });
+
+            const app = new Vue({
+                el: '#app',
+                router
+            });
+        </script>
+    </body>
+</html>
