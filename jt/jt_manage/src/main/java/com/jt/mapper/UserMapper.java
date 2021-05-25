@@ -12,5 +12,4 @@ import java.util.List;
  * 时间 2021/2/2
  */
 public interface UserMapper extends BaseMapper<User> {
-
 }

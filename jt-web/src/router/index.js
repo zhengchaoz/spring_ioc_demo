@@ -4,6 +4,10 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home'
 import Welcome from '../components/Welcome'
 import User from '../components/user/User'
+import Item from "../components/items/Item";
+import addItem from "../components/items/addItem";
+import ItemCat from "../components/items/ItemCat";
+import ItemCatParam from "../components/items/ItemCatParam";
 
 Vue.use(VueRouter)
 const routes = [
@@ -12,7 +16,11 @@ const routes = [
   {
     path: '/home', component: Home, redirect: "/welcome", children: [
       {path: '/welcome', component: Welcome},
-      {path: '/user', component: User}
+      {path: '/user', component: User},
+      {path: '/item', component: Item},
+      {path: '/item/addItem', component: addItem},
+      {path: '/itemCat', component: ItemCat},
+      {path: '/itemCatParam', component: ItemCatParam}
     ]
   }
 ]

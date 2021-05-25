@@ -1,6 +1,7 @@
 package com.jt.service;
 
 import com.jt.pojo.User;
+import com.jt.vo.PageResult;
 
 import java.util.List;
 
@@ -13,4 +14,14 @@ public interface UserService {
     List<User> findAll();
 
     String findUser(User user);
+
+    PageResult queryPage(PageResult pageResult);
+
+    void updateStatusById(User user);
+
+    void addUser(User user);
+
+    void deleteUser(Integer id);
+
+    void editUser(User user);
 }

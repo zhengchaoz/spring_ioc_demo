@@ -1,5 +1,6 @@
 package com.jt.pojo;
 
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -15,6 +16,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ItemDesc extends BasePojo {
 
+    @TableId
     private Integer id;
     private String itemDesc;
 

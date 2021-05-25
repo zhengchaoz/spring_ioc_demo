@@ -1,6 +1,7 @@
 package com.jt.pojo;
 
 import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.jt.vo.ItemParamVO;
 import lombok.Data;
@@ -17,6 +18,7 @@ import lombok.experimental.Accessors;
 @Accessors(chain = true)
 public class ItemParam extends BasePojo {
 
+    @TableId
     private Integer id;
     private String dynamicArgs;
     private String staticArgs;
